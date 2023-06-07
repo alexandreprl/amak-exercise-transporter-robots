@@ -18,12 +18,18 @@ public class TransporterRobotsMainWindow extends MainWindow {
 	private static final int BOX_LAYER = 3;
 	private final VectorialGraphicsPanel vectorialGraphicsPanel;
 	private final TransporterRobotsAmas amas;
-	private final Map<RobotAgent, Drawable> robotDrawables = new HashMap<>();
+	private final Map<RobotAgent, DrawableImage> robotDrawables = new HashMap<>();
 	private final Map<Box, Drawable> boxDrawables = new HashMap<>();
+	private final String robotFullFilename;
+	private final String robotEmptyFilename;
 
 	public TransporterRobotsMainWindow(TransporterRobotsAmas amas) {
 		super();
 		this.amas = amas;
+
+		robotFullFilename = getClass().getResource("/RobotFull.png").getFile();
+		robotEmptyFilename = getClass().getResource("/RobotEmpty.png").getFile();
+
 		vectorialGraphicsPanel = new VectorialGraphicsPanel("Map");
 		vectorialGraphicsPanel.setDefaultView(80, -495, -250);
 		setLeftPanel(vectorialGraphicsPanel);
@@ -44,13 +50,13 @@ public class TransporterRobotsMainWindow extends MainWindow {
 	}
 
 	@Override
-	public void cycle() throws InterruptedException, SchedulableExecutionException {
+	public void cycle() {
 		var robotAgentsList = amas.getAgents(RobotAgent.class);
 		for (var agent :
 				robotAgentsList) {
-			getOrCreateDrawable(agent).move(agent.getX() * 10, agent.getY() * 10).setColor(agent.isHoldingABox() ?
-					                                                                               new Color(224, 181, 0) :
-					                                                                               new Color(0, 0, 0));
+			var drawable = getOrCreateDrawable(agent);
+			drawable.setFilename(agent.isHoldingABox() ? robotFullFilename : robotEmptyFilename);
+			drawable.move(agent.getX() * 10, agent.getY() * 10);
 		}
 		for (Iterator<RobotAgent> iterator = robotDrawables.keySet().iterator(); iterator.hasNext(); ) {
 			var ra = iterator.next();
@@ -72,9 +78,12 @@ public class TransporterRobotsMainWindow extends MainWindow {
 		}
 	}
 
-	private Drawable getOrCreateDrawable(RobotAgent agent) {
-		return robotDrawables.computeIfAbsent(agent, (a) ->
-				new DrawableCircle(vectorialGraphicsPanel, agent.getX() * 10, agent.getY() * 10, 10).setLayer(ROBOT_LAYER));
+	private DrawableImage getOrCreateDrawable(RobotAgent agent) {
+		return robotDrawables.computeIfAbsent(agent, (a) -> {
+			var drawableImage = new DrawableImage(vectorialGraphicsPanel, agent.getX() * 10, agent.getY() * 10, getClass().getResource("/RobotEmpty.png").getFile());
+			drawableImage.setLayer(ROBOT_LAYER);
+			return drawableImage;
+		});
 	}
 
 	private Drawable getOrCreateDrawable(Box box) {

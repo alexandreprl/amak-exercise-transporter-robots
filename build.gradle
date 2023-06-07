@@ -11,7 +11,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.alexandreprl:amak:3.1.1'
+    implementation 'com.github.alexandreprl:amak:3.1.2'
 //    implementation project(':amak') // Uncomment this line to get AMAK from local
 
     // https://mvnrepository.com/artifact/org.projectlombok/lombok
