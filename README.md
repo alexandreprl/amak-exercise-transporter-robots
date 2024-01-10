@@ -42,7 +42,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Exercice
+## About The Exercise
 ![Screenshot](https://github.com/alexandreprl/amak-exercise-transporter-robots/blob/main/preview.png?raw=true)
 
 A room contains two area: the pick-up area in green and the drop-off area in red. Multiple boxes are present in the green area and must be moved to the red area.
