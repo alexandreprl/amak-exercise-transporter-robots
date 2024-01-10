@@ -1,3 +1,5 @@
+package fr.irit.smac.amak.exercises.transporterrobots.domain;
+
 import java.util.Optional;
 
 public record VisionSnapshot(

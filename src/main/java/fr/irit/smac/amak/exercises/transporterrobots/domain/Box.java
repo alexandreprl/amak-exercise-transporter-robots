@@ -1,3 +1,5 @@
+package fr.irit.smac.amak.exercises.transporterrobots.domain;
+
 import lombok.Getter;
 import lombok.Setter;
 

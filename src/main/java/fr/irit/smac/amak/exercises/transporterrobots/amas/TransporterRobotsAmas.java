@@ -1,4 +1,7 @@
+package fr.irit.smac.amak.exercises.transporterrobots.amas;
+
 import fr.irit.smac.amak.Amas;
+import fr.irit.smac.amak.exercises.transporterrobots.domain.Room;
 
 public class TransporterRobotsAmas extends Amas<Room> {
 	public TransporterRobotsAmas(Room environment) {

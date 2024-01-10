@@ -1,8 +1,12 @@
-import fr.irit.smac.amak.scheduling.SchedulableExecutionException;
+package fr.irit.smac.amak.exercises.transporterrobots.ui;
+
+import fr.irit.smac.amak.exercises.transporterrobots.amas.RobotAgent;
+import fr.irit.smac.amak.exercises.transporterrobots.amas.TransporterRobotsAmas;
+import fr.irit.smac.amak.exercises.transporterrobots.domain.Box;
+import fr.irit.smac.amak.exercises.transporterrobots.domain.Room;
 import fr.irit.smac.amak.ui.MainWindow;
 import fr.irit.smac.amak.ui.VectorialGraphicsPanel;
 import fr.irit.smac.amak.ui.drawables.Drawable;
-import fr.irit.smac.amak.ui.drawables.DrawableCircle;
 import fr.irit.smac.amak.ui.drawables.DrawableImage;
 import fr.irit.smac.amak.ui.drawables.DrawableRectangle;
 

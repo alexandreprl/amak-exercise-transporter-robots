@@ -1,3 +1,8 @@
+package fr.irit.smac.amak.exercises.transporterrobots;
+
+import fr.irit.smac.amak.exercises.transporterrobots.amas.TransporterRobotsAmas;
+import fr.irit.smac.amak.exercises.transporterrobots.domain.Room;
+import fr.irit.smac.amak.exercises.transporterrobots.ui.TransporterRobotsMainWindow;
 import fr.irit.smac.amak.scheduling.Scheduler;
 import fr.irit.smac.amak.ui.SchedulerToolbar;
 

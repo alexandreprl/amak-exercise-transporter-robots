@@ -1,4 +1,8 @@
+package fr.irit.smac.amak.exercises.transporterrobots.amas;
+
 import fr.irit.smac.amak.Agent;
+import fr.irit.smac.amak.exercises.transporterrobots.domain.Box;
+import fr.irit.smac.amak.exercises.transporterrobots.domain.Room;
 import lombok.Getter;
 
 import java.util.Optional;
@@ -6,7 +10,7 @@ import java.util.Optional;
 public class RobotAgent extends Agent<TransporterRobotsAmas, Room> {
 	@Getter
 	private int x, y;
-	private Box holdBox;
+	private Box heldBox;
 
 	protected RobotAgent(TransporterRobotsAmas amas) {
 		super(amas);
@@ -23,22 +27,21 @@ public class RobotAgent extends Agent<TransporterRobotsAmas, Room> {
 		}
 		var newX = x + getAmas().getEnvironment().getRandom().nextInt(3) - 1;
 		var newY = y + getAmas().getEnvironment().getRandom().nextInt(3) - 1;
-		if (move(newX, newY)) {
-			x = newX;
-			y = newY;
-		}
-
+		move(newX, newY);
 	}
 
 	private void tryToDropABox() {
 		if (!isHoldingABox())
 			return;
-		getAmas().getEnvironment().dropBox(holdBox, x, y);
-		holdBox = null;
+		getAmas().getEnvironment().dropBox(heldBox, x, y);
+		heldBox = null;
 	}
 
-	private boolean move(int x, int y) {
-		return amas.getEnvironment().move(this, x, y);
+	private void move(int newX, int newY) {
+		if (amas.getEnvironment().move(this, newX, newY)) {
+			this.x = newX;
+			this.y = newY;
+		}
 	}
 
 	private void tryToPickUpABox() {
@@ -48,11 +51,11 @@ public class RobotAgent extends Agent<TransporterRobotsAmas, Room> {
 			var box = anyBoxSeen.get();
 			Optional<Box> boxPickResult = amas.getEnvironment().pickBox(box.getX(), box.getY());
 			if (boxPickResult.isPresent())
-				holdBox = boxPickResult.get();
+				heldBox = boxPickResult.get();
 		}
 	}
 
 	public boolean isHoldingABox() {
-		return holdBox != null;
+		return heldBox != null;
 	}
 }

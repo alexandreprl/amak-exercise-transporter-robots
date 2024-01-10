@@ -1,4 +1,7 @@
+package fr.irit.smac.amak.exercises.transporterrobots.domain;
+
 import fr.irit.smac.amak.Environment;
+import fr.irit.smac.amak.exercises.transporterrobots.amas.RobotAgent;
 import lombok.Getter;
 
 import java.util.ArrayList;
