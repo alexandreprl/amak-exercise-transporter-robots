@@ -67,7 +67,8 @@ The two areas are separated by a wall. To go from one side of the wall to the ot
 ### Exercise
 
 The class __RobotAgent__ contains the behavior of a transporter robot. A basic version has been implemented in which they randomly move, pick a box if there is one and drop it if they are in the drop zone.
-Remove the content of the method _onDecideAndAct_ and replace it with a cooperative behavior.
+Implement a cooperative behavior in which the robots coordinate to move the boxes to the drop zone as fast as possible.
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
